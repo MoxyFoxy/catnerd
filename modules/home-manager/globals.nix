@@ -1,12 +1,11 @@
 { lib
-, types
 , ...
 }: 
 
 {
   options.catppuccin = {
     flavour = lib.mkOption {
-      type = types.enum [
+      type = lib.types.enum [
         "latte"
         "frappe"
         "macchiato"
@@ -17,7 +16,7 @@
     };
 
     accent = lib.mkOption {
-      type = types.enum [
+      type = lib.types.enum [
         "rosewater"
         "flamingo"
         "pink"
