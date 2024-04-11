@@ -1,24 +1,16 @@
 {
   description = "Soothing pastel theme for Nix";
 
-  inputs = {
-    nixpkgs = { 
-      url = "github:NixOS/nixpkgs/nixos-unstable";
-    };
-  };
-
-  outputs = { self, nixpkgs }:
+  outputs = { self }:
   let
     system = "x86_64-linux";
-
-    lib = nixpkgs.legacyPackages.${system}.lib;
-
-    pkgs = nixpkgs.legacyPackages.${system}.extend (self: super: {
-      catppuccin-rofi = self.callPackage ./packages/catppuccin/rofi {};
-    });
+    packageDirs = builtins.readDir ./packages;  # Get all directories in ./packages
+    pkgs = builtins.mapAttrs (name: _: import ./packages/${name}) packageDirs;  # Import each package
   in
   {
-    homeManagerModules.catppuccin = import ./modules/home-manager {inherit lib pkgs; };
-    nixosModules.catppuccin = import ./modules/nixos {inherit lib pkgs; };
+    homeManagerModules.catppuccin = import ./modules/home-manager;
+    nixosModules.catppuccin = import ./modules/nixos;
+
+    packages.${system} = pkgs;
   };
 }
