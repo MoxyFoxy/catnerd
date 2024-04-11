@@ -1,8 +1,8 @@
 { lib
 , stdenv
 , fetchFromGitHub
-, accent ? "blue"
-, variant ? "macchiato"
+, flavour
+, accent
 }:
 let
   palette = import ../palette.nix;
@@ -21,9 +21,9 @@ stdenv.mkDerivation rec {
   patches = [ ./vars.patch ];
 
   installPhase = ''
-    substitute basic/.local/share/rofi/themes/catppuccin-${variant}.rasi $out \
-      --subst-var-by accent '${builtins.toString palette.${variant}.${accent}}' \
-      --subst-var-by button '${builtins.toString palette.${variant}.${accent}}'
+    substitute basic/.local/share/rofi/themes/catppuccin-${flavour}.rasi $out \
+      --subst-var-by accent '${builtins.toString palette.${flavour}.${accent}}' \
+      --subst-var-by button '${builtins.toString palette.${flavour}.${accent}}'
   '';
 
   meta = with lib; {
