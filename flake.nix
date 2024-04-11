@@ -8,7 +8,7 @@
     };
   in
   {
-    homeManagerModules.catppuccin = import ./modules/home-manager;
-    nixosModules.catppuccin = import ./modules/nixos;
+    homeManagerModules.catppuccin = import ./modules/home-manager { inherit pkgs;};
+    nixosModules.catppuccin = import ./modules/nixos { inherit pkgs; };
   };
 }
