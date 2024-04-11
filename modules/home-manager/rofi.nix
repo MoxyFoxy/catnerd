@@ -1,5 +1,6 @@
 { config
 , lib
+, pkgs
 , variant
 , accent
 , ...
@@ -10,6 +11,6 @@ let
 in
 {
   config.programs.rofi = lib.mkIf cfg.enable {
-    theme = "${../../packages/catppuccin-rofi.override { inherit variant accent; }}";
+    theme = "${pkgs.catppuccin-rofi.override { inherit variant accent; }}";
   };
 }
