@@ -1,15 +1,19 @@
 { lib
 , pkgs
 , ...
-}@args:
+}:
 
-let
-  packageNames = builtins.filter
-    (name: !(builtins.elem name [ "default.nix" ]))
-    (builtins.attrNames (builtins.readDir ./.));
+{
+  imports = lib.pipe ./. [
+    builtins.readDir
+    builtins.attrNames
 
-  packageImports = builtins.listToAttrs (map
-    (name: { inherit name; value = pkgs.callPackage ././${name} { }; })
-    packageNames);
-in
-  packageImports
+    (builtins.filter (
+      name: !(builtins.elem name [ "default.nix" ])
+    ))
+
+    (map (
+      package: _: pkgs.callPackage "./${package}" { }
+    ))
+  ];
+}
