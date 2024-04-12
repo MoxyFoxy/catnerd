@@ -6,6 +6,7 @@
 
 let
   inherit (lib) ctp;
+  inherit (pkgs) ctp;
   enable = config.programs.rofi.enable;
 
   flavour = config.catppuccin.flavour;
