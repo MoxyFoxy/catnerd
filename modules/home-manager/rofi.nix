@@ -6,11 +6,10 @@
 
 let
   inherit (lib) ctp;
-  cfg = config.programs.rofi.catppuccin;
-  enable = cfg.enable && config.programs.rofi.enable;
+  enable = config.programs.rofi.enable;
 
-  flavour = cfg.flavour;
-  accent = cfg.accent;
+  flavour = config.catppuccin.flavour;
+  accent = config.catppuccin.accent;
 in
 {
   options.programs.rofi.catppuccin = lib.ctp.mkCatppuccinOpt "rofi";
