@@ -10,13 +10,13 @@ lib.pipe dir [
   builtins.attrNames
 
   (builtins.filter (
-    n: !(builtins.elem n [ "default.nix" ])
+    name: !(builtins.elem name [ "default.nix" ])
   ))
 
   (map (
-    f: _: import "${dir}/${f}" (args // {
+    file: _: import "${dir}/${file}" (args // {
       lib = lib.extend (_: _: { ctp = import ./. args; });
-      pkgs = pkgs.extend (_: _: { ctp = import ../../packages${f} args; });
+      pkgs = pkgs.extend (_: _: { ctp = import ../packages/${builtins.baseNameOf file} args; });
     })
   ))
 ]
