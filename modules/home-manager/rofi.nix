@@ -15,6 +15,6 @@ in
   options.programs.rofi.catppuccin = lib.ctp.mkCatppuccinOpt "rofi";
 
   config.programs.rofi = lib.mkIf enable {
-    theme = "${pkgs.ctp.rofi.override { inherit flavour accent; }}";
+    theme = "${pkgs.ctp.catppuccin-rofi.override { inherit flavour accent; }}";
   };
 }
