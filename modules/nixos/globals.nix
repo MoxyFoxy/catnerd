@@ -5,34 +5,14 @@
 {
   options.catppuccin = {
     flavour = lib.mkOption {
-      type = lib.types.enum [
-        "latte"
-        "frappe"
-        "macchiato"
-        "mocha"
-      ];
-      default = "macchiato";
+      type = lib.ctp.types.flavourOption;
+      default = "latte";
       description = "Global Catppuccin flavour";
     };
 
     accent = lib.mkOption {
-      type = lib.types.enum [
-        "rosewater"
-        "flamingo"
-        "pink"
-        "mauve"
-        "red"
-        "maroon"
-        "peach"
-        "yellow"
-        "green"
-        "teal"
-        "sky"
-        "sapphire"
-        "blue"
-        "lavender"
-      ];
-      default = "blue";
+      type = lib.ctp.types.accentOption;
+      default = "teal";
       description = "Global Catppuccin accent";
     };
   };
