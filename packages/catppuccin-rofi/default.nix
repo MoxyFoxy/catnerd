@@ -1,8 +1,8 @@
 { lib
 , stdenv
 , fetchFromGitHub
-, flavour
-, accent
+, flavour ? "macchiato"
+, accent ? "blue"
 }:
 let
   palette = import ../palette.nix;
