@@ -1,4 +1,5 @@
-# this imports all files in a directory (besides default.nix)
+# Imports all files in a directory (besides default.nix)
+# Include custom libs and pkgs
 { lib
 , pkgs
 , ... 

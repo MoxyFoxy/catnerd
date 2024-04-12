@@ -8,7 +8,7 @@
 let
   palette = import ../palette.nix;
 in
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "catppuccin-rofi";
   version = "unstable-2022-12-31";
 
@@ -19,7 +19,7 @@ stdenv.mkDerivation {
     hash = "sha256-DNorfyl3C4RBclF2KDgwvQQwixpTwSRu7fIvihPN8JY=";
   };
 
-  sourceRoot = "basic/.local/share/rofi/themes";
+  sourceRoot = "${src.name}/basic/.local/share/rofi/themes";
 
   patches = [ ./vars.patch ];
 

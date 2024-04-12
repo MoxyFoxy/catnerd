@@ -3,6 +3,7 @@
 , fetchFromGitHub
 
 , flavour ? "macchiato"
+, accent ? "blue"
 }:
 
 stdenv.mkDerivation {
