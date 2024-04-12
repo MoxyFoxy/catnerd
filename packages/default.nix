@@ -1,4 +1,5 @@
 { lib
+, pkgs
 , ...
 }@args:
 
@@ -8,7 +9,7 @@ let
     (builtins.attrNames (builtins.readDir ./.));
 
   packageImports = builtins.listToAttrs (map
-    (name: { inherit name; value = import ././${name}/default.nix args; })
+    (name: { inherit name; value = pkgs.callPackage ././${name} { }; })
     packageNames);
 in
   packageImports
