@@ -3,6 +3,8 @@
 , fetchFromGitHub
 
 , flavour ? "macchiato"
+
+, ...
 }:
 
 stdenv.mkDerivation rec {

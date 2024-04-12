@@ -9,7 +9,7 @@ let
     (builtins.attrNames (builtins.readDir ./.));
 
   packageBuilder = self: builtins.listToAttrs (map
-    (name: { inherit name; value = pkgs.callPackage ././${name} { }; })
+    (name: { inherit name; value = pkgs.callPackage ././${name} { pkgs = self; }; })
     packageNames);
 
   self = pkgs.lib.fix packageBuilder;

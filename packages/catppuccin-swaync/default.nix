@@ -3,6 +3,8 @@
 , fetchurl
 
 , flavour ? "macchiato"
+
+, ...
 }:
 
 stdenv.mkDerivation rec {

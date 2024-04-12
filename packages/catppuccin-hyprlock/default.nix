@@ -2,10 +2,12 @@
 , stdenv
 , fetchFromGitHub
 
-, catppuccin-hyprland
+, pkgs
 
 , flavour ? "macchiato"
 , accent ? "blue"
+
+, ...
 }:
 
 stdenv.mkDerivation {
@@ -23,7 +25,7 @@ stdenv.mkDerivation {
 
   installPhase = ''
     substitute hyprlock.conf $out \
-      --subst-var-by palette '${catppuccin-hyprland.override { inherit flavour; }}' \
+      --subst-var-by palette '${pkgs.catppuccin-hyprland.override { inherit flavour; }}' \
       --subst-var-by accent '${accent}' \
       --subst-var-by font 'Ubuntu Nerd Font'
   '';

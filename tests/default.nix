@@ -50,6 +50,9 @@ pkgs.nixosTest {
       };
 
       # Test home-manager module here
+      home.packages = with pkgs; [
+        swaynotificationcenter
+      ];
       programs = {
         alacritty.enable = true;
         bat.enable = true;

@@ -4,6 +4,8 @@
 
 , flavour ? "macchiato"
 , accent ? "blue"
+
+, ...
 }:
 let
   palette = import ../palette.nix;
