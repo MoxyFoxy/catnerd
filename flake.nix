@@ -4,5 +4,7 @@
   outputs = _: {
     homeManagerModules.catppuccin = import ./modules/home-manager;
     nixosModules.catppuccin = import ./modules/nixos;
+
+    checks."x86_64-linux".default = import ./tests;
   };
 }
