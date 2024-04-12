@@ -1,13 +1,14 @@
 { lib
 , stdenv
 , fetchFromGitHub
+
 , flavour ? "macchiato"
 , accent ? "blue"
 }:
 let
   palette = import ../palette.nix;
 in
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "catppuccin-rofi";
   version = "unstable-2022-12-31";
 
@@ -18,10 +19,12 @@ stdenv.mkDerivation rec {
     hash = "sha256-DNorfyl3C4RBclF2KDgwvQQwixpTwSRu7fIvihPN8JY=";
   };
 
+  sourceRoot = "basic/.local/share/rofi/themes";
+
   patches = [ ./vars.patch ];
 
   installPhase = ''
-    substitute basic/.local/share/rofi/themes/catppuccin-${flavour}.rasi $out \
+    substitute catppuccin-${flavour}.rasi $out \
       --subst-var-by accent '${builtins.toString palette.${flavour}.${accent}}' \
       --subst-var-by button '${builtins.toString palette.${flavour}.${accent}}'
   '';
@@ -30,7 +33,7 @@ stdenv.mkDerivation rec {
     description = "Soothing pastel theme for Rofi";
     homepage = "https://github.com/catppuccin/rofi";
     license = licenses.mit;
-    maintainers = with maintainers; [ ];
+    # maintainers = with maintainers; [ ];
     mainProgram = "catppuccin-rofi";
     platforms = platforms.all;
   };
