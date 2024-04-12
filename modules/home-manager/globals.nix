@@ -4,6 +4,8 @@
 
 {
   options.catppuccin = {
+    enable = lib.mkEnableOption "Global Catppuccin theming";
+
     flavour = lib.mkOption {
       type = lib.types.enum [
         "latte"

@@ -2,17 +2,13 @@
 , ...
 }@args:
 
-{
-  imports = lib.pipe ./. [
-    builtins.readDir
-    builtins.attrNames
+let
+  packageNames = builtins.filter
+    (name: !(builtins.elem name [ "default.nix" ]))
+    (builtins.attrNames (builtins.readDir ./.));
 
-    (builtins.filter (
-      name: !(builtins.elem name [ "default.nix" ])
-    ))
-
-    (map (
-      package: _: import "./${package}" (args)
-    ))
-  ];
-}
+  packageImports = builtins.listToAttrs (map
+    (name: { inherit name; value = import ././${name}/default.nix args; })
+    packageNames);
+in
+  packageImports

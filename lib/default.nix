@@ -24,6 +24,12 @@ let
   # followed by the local config attrset
   mkFlavourOpt = mkBasicOpt "flavour" types.flavourOption;
 
+  # string -> a -> a
+  # this creates an accent option for modules
+  # the first string should be the name of the module,
+  # followed by the local config attrset
+  mkAccentOpt = mkBasicOpt "accent" types.accentOption;
+
   types = {
     flavourOption = lib.types.enum [ "latte" "frappe" "macchiato" "mocha" ];
     accentOption = lib.types.enum [
@@ -45,7 +51,7 @@ let
   };
 in
 {
-  inherit mkBasicOpt mkFlavourOpt types;
+  inherit mkBasicOpt mkFlavourOpt mkAccentOpt types;
 
   # string -> string
   # this capitalizes the first letter in a string,
@@ -87,19 +93,14 @@ in
 
   # string -> a -> a
   # this creates a basic attrset only containing an
-  # enable and flavour option. the fist string should
+  # enable, flavour and accent option. the fist string should
   # be the name of the module, followed by the local config
   # attrset
   mkCatppuccinOpt = name: {
     enable = lib.mkEnableOption "Catppuccin theme";
     flavour = mkFlavourOpt name;
+    accent = mkAccentOpt name;
   };
-
-  # string -> a -> a
-  # this creates an accent option for modules
-  # the first string should be the name of the module,
-  # followed by the local config attrset
-  mkAccentOpt = mkBasicOpt "accent" types.accentOption;
 
   assertXdgEnabled = name: {
     assertion = config.xdg.enable;

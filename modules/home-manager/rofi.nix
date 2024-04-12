@@ -5,9 +5,7 @@
 }:
 
 let
-  inherit (lib) ctp;
-  inherit (pkgs) ctp;
-  enable = config.programs.rofi.enable;
+  enable = config.catppuccin.enable && config.programs.rofi.enable;
 
   flavour = config.catppuccin.flavour;
   accent = config.catppuccin.accent;
