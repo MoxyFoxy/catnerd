@@ -35,9 +35,9 @@ in
         size = config.catnerd.cursor.size;
     };
     font = {
-        name = "${config.catppuccin.nerdfonts.main.font} Nerd Font";
+        name = "${config.catnerd.fonts.main.family} Nerd Font";
         package = pkgs.nerdfonts;
-        size = config.catnerd.nerdfonts.main.size;
+        size = config.catnerd.fonts.main.size;
     };
   };
 

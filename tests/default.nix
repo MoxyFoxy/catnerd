@@ -6,6 +6,26 @@ let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
 
   pkgs = import nixpkgs {};
+
+  catnerd = {
+    enable = true;
+
+    flavour = "macchiato";
+    accent = "blue";
+
+    cursor.size = 24;
+
+    fonts = {
+      main = {
+        family = "Ubuntu";
+        size = 14;
+      };
+      mono = {
+        family = "DroidSansM";
+        size = 10;
+      };
+    };
+  };
 in
 pkgs.nixosTest {
   name = "catppuccin";
@@ -24,24 +44,7 @@ pkgs.nixosTest {
       (import "${home-manager}/nixos")
       (self.nixosModules.catnerd { inherit config lib pkgs; })
     ];
-
-    catnerd = {
-      enable = true;
-
-      flavour = "macchiato";
-      accent = "blue";
-
-      fonts = {
-        main = {
-          family = "Ubuntu";
-          size = 14;
-        };
-        mono = {
-          family = "DroidSansM";
-          size = 10;
-        };
-      };
-    };
+    inherit catnerd;
 
     users.users.test = {
       isNormalUser = true;
@@ -61,27 +64,7 @@ pkgs.nixosTest {
       imports = [
         (self.homeManagerModules.catnerd { inherit config lib pkgs;})
       ];
-      xdg.enable = true;
-
-      manual.manpages.enable = false;
-
-      catnerd = {
-        enable = true;
-
-        flavour = "macchiato";
-        accent = "blue";
-
-        fonts = {
-          main = {
-            family = "Ubuntu";
-            size = 14;
-          };
-          mono = {
-            family = "DroidSansM";
-            size = 10;
-          };
-        };
-      };
+      inherit catnerd;
 
       # Test home-manager module here
       home.packages = with pkgs; [
@@ -102,6 +85,9 @@ pkgs.nixosTest {
           settings.source = [];
         };
       };
+      xdg.enable = true;
+      gtk.enable = true;
+      qt.enable = true;
     };
   };
 }
