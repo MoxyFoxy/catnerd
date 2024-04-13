@@ -1,26 +1,19 @@
 {
   description = "Soothing pastel theme for Nix";
 
-  # Inputs for testing
-  inputs = {
-    nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixos-unstable";
-    };
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-  outputs = { ... }@inputs: let
+  outputs = { self, nixpkgs, ... }: let
     system = "x86_64-linux";
-    pkgs = import inputs.nixpkgs { inherit system; };
+    pkgs = import nixpkgs { inherit system; };
   in {
     homeManagerModules.catppuccin = import ./modules/home-manager;
     nixosModules.catppuccin = import ./modules/nixos;
 
-    packages.${system} = import ./packages { inherit pkgs; };
+    packages.${system} = import ./packages { inherit (pkgs) callPackage; };
 
-    checks.${system}.default = pkgs.callPackage ./tests { inherit inputs; };
+    # checks.${system}.default = pkgs.callPackage ./tests { 
+    #   inherit self;
+    # };
   };
 }

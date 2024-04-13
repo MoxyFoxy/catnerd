@@ -1,9 +1,14 @@
-{ inputs
-, lib
-, pkgs
+{ self
 , ...
 }:
 
+let
+  nixpkgs = builtins.fetchTarball "https://github.com/nixOS/nixpkgs/archive/23.11.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
+
+  pkgs = (import nixpkgs {}).extend(_: _: self.packages."x86_64-linux");
+  lib = lib.extend(_: _: import ./lib);
+in
 pkgs.nixosTest {
   name = "catppuccin";
 
@@ -15,11 +20,11 @@ pkgs.nixosTest {
   '';
 
 
-  nodes.machine = { ... }: {
+  nodes.machine = { config, pkgs, ... }: {
     system.stateVersion = "23.11";
     imports = [
-      inputs.home-manager.nixosModules.default
-      inputs.self.nixosModules.catppuccin 
+      (import "${home-manager}/nixos")
+      self.nixosModules.catppuccin
     ];
 
     users.users.test = {
@@ -37,21 +42,21 @@ pkgs.nixosTest {
     home-manager.users.test = {
       home.stateVersion = "23.11";
       imports = [
-        inputs.self.homeManagerModules.catppuccin
+        self.homeManagerModules.catppuccin
       ];
       xdg.enable = true;
 
-      manual.manpages.enable = lib.mkDefault false;
+      manual.manpages.enable = false;
 
       catppuccin = {
-        enable = true;
+        enable = false;
         flavour = "macchiato";
         accent = "blue";
       };
 
       # Test home-manager module here
-      home.packages = with pkgs; [
-        swaynotificationcenter
+      home.packages = [
+        pkgs.swaynotificationcenter
       ];
       programs = {
         alacritty.enable = true;

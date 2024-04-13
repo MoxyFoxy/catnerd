@@ -10,6 +10,6 @@ let
 in
 {
   config.xdg.configFile."hypr/hyprlock.conf" = lib.mkIf config.catppuccin.enable {
-    source = "${pkgs.ctp.catppuccin-hyprlock.override { inherit flavour accent; }}";
+    source = "${pkgs.catppuccin-hyprlock.override { inherit flavour accent; }}";
   };
 }

@@ -7,7 +7,7 @@
 , ...
 }:
 
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "catppuccin-tty";
   version = "unstable-2023-06-27";
 
@@ -18,8 +18,10 @@ stdenv.mkDerivation {
     hash = "sha256-LeGX6HtcnMLFyDkkm4fgTEbVgzyfYZXEX3GSpSvbFwo=";
   };
 
+  sourceRoot = "${src.name}";
+
   installPhase = ''
-    params=$(./generate.sh ${flavour})
+    params=$(bash generate.sh ${flavour})
     for colour in $params; do
       echo $colour >> $out
     done

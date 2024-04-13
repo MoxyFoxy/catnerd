@@ -10,6 +10,6 @@ let
 in
 {
   config.boot.loader.grub = lib.mkIf config.catppuccin.enable {
-    theme = "${pkgs.ctp.catppuccin-grub.override { inherit flavour accent; }}";
+    theme = "${pkgs.catppuccin-grub.override { inherit flavour accent; }}";
   };
 }

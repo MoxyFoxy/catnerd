@@ -1,17 +1,16 @@
 # Imports all packages in the directory
-{ pkgs
+{ callPackage
 , ...
 }:
 
-let
-  packageNames = builtins.filter
-    (name: !(builtins.elem name [ "default.nix" "palette.nix" ]))
-    (builtins.attrNames (builtins.readDir ./.));
-
-  packageBuilder = self: builtins.listToAttrs (map
-    (name: { inherit name; value = pkgs.callPackage ././${name} { pkgs = self; }; })
-    packageNames);
-
-  self = pkgs.lib.fix packageBuilder;
-in
-  self
+rec {
+  catppuccin-grub = callPackage ./catppuccin-grub { };
+  catppuccin-hyprland = callPackage ./catppuccin-hyprland { };
+  catppuccin-hyprlock = callPackage ./catppuccin-hyprlock { inherit catppuccin-hyprland; };
+  catppuccin-plymouth = callPackage ./catppuccin-plymouth { };
+  catppuccin-rofi = callPackage ./catppuccin-rofi { };
+  catppuccin-swaync = callPackage ./catppuccin-swaync { };
+  catppuccin-tty = callPackage ./catppuccin-tty { };
+  catppuccin-waybar = callPackage ./catppuccin-waybar { };
+  catppuccin-xresources = callPackage ./catppuccin-xresources { };
+}

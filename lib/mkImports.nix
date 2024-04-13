@@ -16,8 +16,8 @@ lib.pipe dir [
 
   (map (
     file: _: import "${dir}/${file}" (args // {
-      lib = lib.extend (_: _: { ctp = import ./. args; });
-      pkgs = pkgs.extend (_: _: { ctp = import ../packages args; });
+      lib = lib.extend (_: _: (import ./. args));
+      pkgs = pkgs.extend (_: _: (import ../packages args));
     })
   ))
 ]

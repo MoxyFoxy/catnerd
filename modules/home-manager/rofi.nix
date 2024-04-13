@@ -10,6 +10,6 @@ let
 in
 {
   config.programs.rofi = lib.mkIf config.catppuccin.enable {
-    theme = "${pkgs.ctp.catppuccin-rofi.override { inherit flavour accent; }}";
+    theme = "${pkgs.catppuccin-rofi.override { inherit flavour accent; }}";
   };
 }

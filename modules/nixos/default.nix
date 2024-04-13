@@ -1,7 +1,7 @@
-{ pkgs
-, ...
+{ lib
+, pkgs
 }@args:
 
 {
-  imports = import ../../lib/mkImports.nix args ./.;
+  imports = ../../lib/mkImport.nix ./. args;
 }
