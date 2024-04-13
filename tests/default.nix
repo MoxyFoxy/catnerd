@@ -25,6 +25,12 @@ pkgs.nixosTest {
       (self.nixosModules.catppuccin { inherit config lib pkgs; })
     ];
 
+    catppuccin = {
+      enable = true;
+      flavour = "macchiato";
+      accent = "blue";
+    };
+
     users.users.test = {
       isNormalUser = true;
       home = "/home/test";

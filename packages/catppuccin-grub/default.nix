@@ -18,10 +18,10 @@ stdenv.mkDerivation rec {
     hash = "sha256-/bSolCta8GCZ4lP0u5NVqYQ9Y3ZooYCNdTwORNvR7M0=";
   };
 
-  sourceRoot = "srcs";
+  sourceRoot = "${src.name}/src";
 
   installPhase = ''
-    cp catppuccin-${flavour}-grub-theme $out
+    cp -r catppuccin-${flavour}-grub-theme $out
   '';
 
   meta = with lib; {
