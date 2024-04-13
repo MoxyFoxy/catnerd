@@ -18,6 +18,7 @@ lib.pipe dir [
     file: _: import "${dir}/${file}" (args // {
       lib = lib.extend (_: _: (import ./. args));
       pkgs = pkgs.extend (_: _: (import ../packages args));
+      palette = import ../packages/palette.nix;
     })
   ))
 ]

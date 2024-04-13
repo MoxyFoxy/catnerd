@@ -54,6 +54,14 @@ rec {
   };
 
   # string -> string
+  # this removes the first letter in a string,
+  # which is sometimes needed in order to format
+  # the colours correctly
+  mkColour = str:
+    with builtins;
+    substring 1 (stringLength str) str;
+
+  # string -> string
   # this capitalizes the first letter in a string,
   # which is sometimes needed in order to format
   # the names of themes correctly
