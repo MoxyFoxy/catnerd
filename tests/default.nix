@@ -28,17 +28,21 @@ let
   };
 in
 pkgs.nixosTest {
-  name = "catppuccin";
+  name = "catnerd";
 
   testScript = ''
     machine.start()
     machine.wait_for_unit("home-manager-test.service")
     machine.wait_until_succeeds("systemctl status home-manager-test.service")
-    machine.succeed("echo \"system started!\"")
   '';
 
 
   nodes.machine = { config, lib, pkgs, ... }: {
+    users.users.test = {
+      isNormalUser = true;
+      home = "/home/test";
+    };
+
     system.stateVersion = "23.11";
     imports = [
       (import "${home-manager}/nixos")
@@ -46,10 +50,7 @@ pkgs.nixosTest {
     ];
     inherit catnerd;
 
-    users.users.test = {
-      isNormalUser = true;
-      home = "/home/test";
-    };
+    programs.dconf.enable = true; # required for gtk
 
     # Test nixos module here
     boot = {
@@ -57,8 +58,6 @@ pkgs.nixosTest {
       plymouth.enable = true;
     };
 
-
-    programs.dconf.enable = true; # required for gtk
     home-manager.users.test = {
       home.stateVersion = "23.11";
       imports = [
