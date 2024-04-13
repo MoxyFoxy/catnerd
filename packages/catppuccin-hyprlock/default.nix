@@ -5,6 +5,7 @@
 
 , flavour ? "macchiato"
 , accent ? "blue"
+, font ? "Ubuntu"
 }:
 
 stdenv.mkDerivation {
@@ -24,7 +25,7 @@ stdenv.mkDerivation {
     substitute hyprlock.conf $out \
       --subst-var-by palette '${packages.catppuccin-hyprland.override { inherit flavour; }}' \
       --subst-var-by accent '${accent}' \
-      --subst-var-by font 'Ubuntu Nerd Font'
+      --subst-var-by font '${font} Nerd Font'
   '';
 
   meta = with lib; {
