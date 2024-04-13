@@ -47,7 +47,7 @@
         };
         size = lib.mkOption {
           type = lib.types.int;
-          default = 10;
+          default = 14;
           description = "Mono nerdfont size";
         };
       };
