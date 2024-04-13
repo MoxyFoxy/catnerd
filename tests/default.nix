@@ -22,21 +22,22 @@ pkgs.nixosTest {
     system.stateVersion = "23.11";
     imports = [
       (import "${home-manager}/nixos")
-      (self.nixosModules.catppuccin { inherit config lib pkgs; })
+      (self.nixosModules.catnerd { inherit config lib pkgs; })
     ];
 
-    catppuccin = {
+    catnerd = {
       enable = true;
+
       flavour = "macchiato";
       accent = "blue";
 
-      nerdfonts = {
+      fonts = {
         main = {
-          font = "Ubuntu";
+          family = "Ubuntu";
           size = 14;
         };
         mono = {
-          font = "DroidSansM";
+          family = "DroidSansM";
           size = 10;
         };
       };
@@ -58,24 +59,25 @@ pkgs.nixosTest {
     home-manager.users.test = {
       home.stateVersion = "23.11";
       imports = [
-        (self.homeManagerModules.catppuccin { inherit config lib pkgs;})
+        (self.homeManagerModules.catnerd { inherit config lib pkgs;})
       ];
       xdg.enable = true;
 
       manual.manpages.enable = false;
 
-      catppuccin = {
+      catnerd = {
         enable = true;
+
         flavour = "macchiato";
         accent = "blue";
 
-        nerdfonts = {
+        fonts = {
           main = {
-            font = "Ubuntu";
+            family = "Ubuntu";
             size = 14;
           };
           mono = {
-            font = "DroidSansM";
+            family = "DroidSansM";
             size = 10;
           };
         };

@@ -5,16 +5,16 @@
 }:
 
 let
-  flavour = config.catppuccin.flavour;
-  accent = config.catppuccin.accent;
+  flavour = config.catnerd.flavour;
+  accent = config.catnerd.accent;
 in
 {
-  config.boot.plymouth = lib.mkIf config.catppuccin.enable {
+  config.boot.plymouth = lib.mkIf config.catnerd.enable {
     themePackages = [
       (pkgs.catppuccin-plymouth.override { inherit flavour accent; })
     ];
     theme = "catppuccin-${flavour}";
 
-    font = "${pkgs.nerdfonts}/share/fonts/opentype/NerdFonts/${config.catppuccin.nerdfonts.mono.font}NerdFont-Regular.otf";
+    font = "${pkgs.nerdfonts}/share/fonts/opentype/NerdFonts/${config.catnerd.fonts.mono.family}NerdFont-Regular.otf";
   };
 }

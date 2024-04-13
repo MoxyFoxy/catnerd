@@ -5,11 +5,11 @@
 }:
 
 let
-  flavour = config.catppuccin.flavour;
-  accent = config.catppuccin.accent;
+  flavour = config.catnerd.flavour;
+  accent = config.catnerd.accent;
 in
 {
-  config.xdg.configFile."swaync/style.css" = lib.mkIf config.catppuccin.enable {
+  config.xdg.configFile."swaync/style.css" = lib.mkIf config.catnerd.enable {
     source = "${pkgs.catppuccin-swaync.override { inherit flavour accent; }}";
   };
 }

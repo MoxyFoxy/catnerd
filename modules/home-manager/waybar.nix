@@ -5,13 +5,11 @@
 }:
 
 let
-  flavour = config.catppuccin.flavour;
-  accent = config.catppuccin.accent;
-
-  user_style = config.programs.waybar.style;
+  flavour = config.catnerd.flavour;
+  accent = config.catnerd.accent;
 in
 {
-  config.programs.waybar = lib.mkIf config.catppuccin.enable {
+  config.programs.waybar = lib.mkIf config.catnerd.enable {
     style = ''
       @import "${pkgs.catppuccin-waybar.override { inherit flavour accent; }}";
     '';

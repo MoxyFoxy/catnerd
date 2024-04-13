@@ -3,44 +3,52 @@
 }: 
 
 {
-  options.catppuccin = {
-    enable = lib.mkEnableOption "Global Catppuccin theming";
+  options.catnerd = {
+    enable = lib.mkEnableOption "Enable CatNerd theming";
     
     flavour = lib.mkOption {
       type = lib.types.flavourOption;
       default = "macchiato";
-      description = "Global Catppuccin flavour";
+      description = "Catppuccin flavour";
     };
 
     accent = lib.mkOption {
       type = lib.types.accentOption;
       default = "blue";
-      description = "Global Catppuccin accent";
+      description = "Catppuccin accent";
     };
 
-    nerdfonts = {
+    cursor = {
+      size = lib.mkOption {
+        type = lib.types.int;
+        default = 24;
+        description = "Cursor size";
+      };
+    };
+
+    fonts = {
       main = {
-        font = lib.mkOption {
+        family = lib.mkOption {
           type = lib.types.mainFontOption;
           default = "Ubuntu";
-          description = "Global Catppuccin main font";
+          description = "Main nerdfont family";
         };
         size = lib.mkOption {
           type = lib.types.int;
           default = 10;
-          description = "Global Catppuccin main font size";
+          description = "Main nerdfont size";
         };
       };
       mono = {
-        font = lib.mkOption {
+        family = lib.mkOption {
           type = lib.types.monoFontOption;
           default = "UbuntuMono";
-          description = "Global Catppuccin terminal font";
+          description = "Mono nerdfont family";
         };
         size = lib.mkOption {
           type = lib.types.int;
           default = 10;
-          description = "Global Catppuccin terminal font size";
+          description = "Mono nerdfont size";
         };
       };
     };

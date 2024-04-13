@@ -5,15 +5,15 @@
 }:
 
 let
-  flavour = config.catppuccin.flavour;
-  accent = config.catppuccin.accent;
+  flavour = config.catnerd.flavour;
+  accent = config.catnerd.accent;
 in
 {
-  config.boot.loader.grub = lib.mkIf config.catppuccin.enable {
+  config.boot.loader.grub = lib.mkIf config.catnerd.enable {
     theme = "${pkgs.catppuccin-grub.override { inherit flavour accent; }}";
     splashImage = pkgs.catppuccin-splash.override { inherit flavour accent; };
 
-    font = "${pkgs.nerdfonts}/share/fonts/opentype/NerdFonts/${config.catppuccin.nerdfonts.mono.font}NerdFont-Regular.otf";
-    fontSize = config.catppuccin.nerdfonts.mono.size;
+    font = "${pkgs.nerdfonts}/share/fonts/opentype/NerdFonts/${config.catnerd.fonts.mono.family}NerdFont-Regular.otf";
+    fontSize = config.catnerd.fonts.mono.size;
   };
 }

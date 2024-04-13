@@ -5,16 +5,16 @@
 }:
 
 let
-  flavour = config.catppuccin.flavour;
+  flavour = config.catnerd.flavour;
 in
 {
-  config.programs.kitty = lib.mkIf config.catppuccin.enable {
+  config.programs.kitty = lib.mkIf config.catnerd.enable {
     theme = "Catppuccin-${lib.mkUpper flavour}";
 
     font = {
       package = pkgs.nerdfonts;
-      name = "${config.catppuccin.nerdfonts.mono.font} Nerd Font";
-      size = config.catppuccin.nerdfonts.mono.size;
+      name = "${config.catnerd.fonts.mono.family} Nerd Font";
+      size = config.catnerd.fonts.mono.size;
     };
   };
 }

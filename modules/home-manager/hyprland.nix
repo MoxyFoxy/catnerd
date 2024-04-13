@@ -6,11 +6,11 @@
 }:
 
 let
-  flavour = config.catppuccin.flavour;
-  accent = config.catppuccin.accent;
+  flavour = config.catnerd.flavour;
+  accent = config.catnerd.accent;
 in
 {
-  config.wayland.windowManager.hyprland.settings = lib.mkIf config.catppuccin.enable
+  config.wayland.windowManager.hyprland.settings = lib.mkIf config.catnerd.enable
   {
     source = [
       "${pkgs.catppuccin-hyprland.override { inherit flavour accent; }}"
