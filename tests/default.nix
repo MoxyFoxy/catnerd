@@ -1,13 +1,11 @@
 { self
-, ...
 }:
 
 let
-  nixpkgs = builtins.fetchTarball "https://github.com/nixOS/nixpkgs/archive/23.11.tar.gz";
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
+  nixpkgs = builtins.fetchTarball "https://github.com/nixOS/nixpkgs/archive/nixos-unstable.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
 
-  pkgs = (import nixpkgs {}).extend(_: _: self.packages."x86_64-linux");
-  lib = lib.extend(_: _: import ./lib);
+  pkgs = import nixpkgs {};
 in
 pkgs.nixosTest {
   name = "catppuccin";
@@ -20,11 +18,11 @@ pkgs.nixosTest {
   '';
 
 
-  nodes.machine = { config, pkgs, ... }: {
+  nodes.machine = { config, lib, pkgs, ... }: {
     system.stateVersion = "23.11";
     imports = [
       (import "${home-manager}/nixos")
-      self.nixosModules.catppuccin
+      (self.nixosModules.catppuccin { inherit config lib pkgs; })
     ];
 
     users.users.test = {
@@ -33,8 +31,9 @@ pkgs.nixosTest {
     };
 
     # Test nixos module here
-    boot.loader = {
-      grub.enable = true;
+    boot = {
+      loader.grub.enable = true;
+      plymouth.enable = true;
     };
 
 
@@ -42,46 +41,36 @@ pkgs.nixosTest {
     home-manager.users.test = {
       home.stateVersion = "23.11";
       imports = [
-        self.homeManagerModules.catppuccin
+        (self.homeManagerModules.catppuccin { inherit config lib pkgs;})
       ];
       xdg.enable = true;
 
       manual.manpages.enable = false;
 
       catppuccin = {
-        enable = false;
+        enable = true;
         flavour = "macchiato";
         accent = "blue";
       };
 
       # Test home-manager module here
-      home.packages = [
-        pkgs.swaynotificationcenter
+      home.packages = with pkgs; [
+        hyprlock
+        swaynotificationcenter
       ];
       programs = {
-        alacritty.enable = true;
-        bat.enable = true;
-        bottom.enable = true;
-        btop.enable = true;
-        fish.enable = true;
-        fzf.enable = true;
-        git.enable = true; # Required for delta
-        git.delta.enable = true;
-        gitui.enable = true;
-        # glamour.catppuccin.enable = true;
-        helix.enable = true;
         home-manager.enable = false;
-        imv.enable = true;
+        git.enable = true; # Required for delta
+        
         kitty.enable = true;
-        lazygit.enable = true;
-        micro.enable = true;
-        neovim.enable = true;
         rofi.enable = true;
-        starship.enable = true;
-        swaylock.enable = true;
-        tmux.enable = true;
-        yazi.enable = true;
-        zathura.enable = true;
+        waybar.enable = true;
+      };
+      wayland.windowManager = {
+        hyprland = {
+          enable = true;
+          settings.source = [];
+        };
       };
     };
   };

@@ -4,7 +4,7 @@
 , ... 
 }:
 
-let
+rec {
   # string -> type -> string -> a -> a
   # this is an internal function and shouldn't be
   # used unless you know what you're doing. it takes
@@ -30,7 +30,7 @@ let
   # followed by the local config attrset
   mkAccentOpt = mkBasicOpt "accent" types.accentOption;
 
-  types = {
+  types = lib.types // {
     flavourOption = lib.types.enum [ "latte" "frappe" "macchiato" "mocha" ];
     accentOption = lib.types.enum [
       "blue"
@@ -49,9 +49,6 @@ let
       "yellow"
     ];
   };
-in
-{
-  inherit mkBasicOpt mkFlavourOpt mkAccentOpt types;
 
   # string -> string
   # this capitalizes the first letter in a string,

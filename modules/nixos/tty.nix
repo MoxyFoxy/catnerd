@@ -10,5 +10,5 @@ let
 in
 {
   config.boot.kernelParams = lib.mkIf config.catppuccin.enable
-    config.boot.kernelParams ++ (lib.splitString "\n" (builtins.readFile "${pkgs.catppuccin-tty.override { inherit flavour accent; }}"));
+    (lib.splitString "\n" (builtins.readFile "${pkgs.catppuccin-tty.override { inherit flavour accent; }}"));
 }

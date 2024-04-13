@@ -9,9 +9,8 @@ let
   accent = config.catppuccin.accent;
 in
 {
-  config.wayland.windowManager.hyprland.settings = lib.mkIf config.catppuccin.enable {
-    source = [
+  config.wayland.windowManager.hyprland.settings.source = lib.mkIf config.catppuccin.enable
+    [
       "${pkgs.catppuccin-hyprland.override { inherit flavour accent; }}"
-    ] ++ config.wayland.windowManager.hyprland.settings.source;
-  };
+    ];
 }
