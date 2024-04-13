@@ -27,9 +27,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Get the new current generation
-new_generation=$(get_current_generation)
-
 # Push changes
 try git push -q origin
 

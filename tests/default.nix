@@ -29,6 +29,18 @@ pkgs.nixosTest {
       enable = true;
       flavour = "macchiato";
       accent = "blue";
+
+      fonts = {
+        package = pkgs.nerdfonts;
+        main = {
+          font = "Ubuntu Nerd Font";
+          size = 14;
+        };
+        mono = {
+          font = "DroidSansM Nerd Font";
+          size = 10;
+        };
+      };
     };
 
     users.users.test = {
@@ -57,6 +69,18 @@ pkgs.nixosTest {
         enable = true;
         flavour = "macchiato";
         accent = "blue";
+
+        fonts = {
+          package = pkgs.nerdfonts;
+          main = {
+            font = "Ubuntu Nerd Font";
+            size = 14;
+          };
+          mono = {
+            font = "DroidSansM Nerd Font";
+            size = 10;
+          };
+        };
       };
 
       # Test home-manager module here
