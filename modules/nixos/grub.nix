@@ -11,6 +11,7 @@ in
 {
   config.boot.loader.grub = lib.mkIf config.catppuccin.enable {
     theme = "${pkgs.catppuccin-grub.override { inherit flavour accent; }}";
+    splashImage = pkgs.catppuccin-splash.override { inherit flavour accent; };
 
     font = "${pkgs.nerdfonts}/share/fonts/opentype/NerdFonts/${config.catppuccin.nerdfonts.mono.font}NerdFont-Regular.otf";
     fontSize = config.catppuccin.nerdfonts.mono.size;

@@ -15,6 +15,6 @@ in
     source = [
       "${pkgs.catppuccin-hyprland.override { inherit flavour accent; }}"
     ];
-    misc.background = "rgb(${lib.mkColour palette.${flavour}.base})";
+    misc.background_color = "rgb(${lib.mkColour palette.${flavour}.base})";
   };
 }
