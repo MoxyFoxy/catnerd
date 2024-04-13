@@ -14,5 +14,7 @@ in
       (pkgs.catppuccin-plymouth.override { inherit flavour accent; })
     ];
     theme = "catppuccin-${flavour}";
+
+    font = "${pkgs.nerdfonts}/share/fonts/opentype/NerdFonts/${config.catppuccin.nerdfonts.mono.font}NerdFont-Regular.otf";
   };
 }

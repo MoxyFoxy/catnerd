@@ -48,6 +48,9 @@ rec {
       "teal"
       "yellow"
     ];
+
+    mainFontOption = lib.types.enum [ "Ubuntu" ];
+    monoFontOption = lib.types.enum [ "UbuntuMono" "DroidSansM" ];
   };
 
   # string -> string

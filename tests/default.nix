@@ -30,14 +30,13 @@ pkgs.nixosTest {
       flavour = "macchiato";
       accent = "blue";
 
-      fonts = {
-        package = pkgs.nerdfonts;
+      nerdfonts = {
         main = {
-          font = "Ubuntu Nerd Font";
+          font = "Ubuntu";
           size = 14;
         };
         mono = {
-          font = "DroidSansM Nerd Font";
+          font = "DroidSansM";
           size = 10;
         };
       };
@@ -70,14 +69,13 @@ pkgs.nixosTest {
         flavour = "macchiato";
         accent = "blue";
 
-        fonts = {
-          package = pkgs.nerdfonts;
+        nerdfonts = {
           main = {
-            font = "Ubuntu Nerd Font";
+            font = "Ubuntu";
             size = 14;
           };
           mono = {
-            font = "DroidSansM Nerd Font";
+            font = "DroidSansM";
             size = 10;
           };
         };

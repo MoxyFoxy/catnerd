@@ -18,16 +18,11 @@
       description = "Global Catppuccin accent";
     };
 
-    fonts = {
-      package = lib.mkOption {
-        type = lib.types.packageOption;
-        default = "fira-code";
-        description = "Global Catppuccin font package";
-      };
+    nerdfonts = {
       main = {
         font = lib.mkOption {
-          type = lib.types.fontOption;
-          default = "Fira Code";
+          type = lib.types.mainFontOption;
+          default = "Ubuntu";
           description = "Global Catppuccin main font";
         };
         size = lib.mkOption {
@@ -38,8 +33,8 @@
       };
       mono = {
         font = lib.mkOption {
-          type = lib.types.fontOption;
-          default = "Fira Code";
+          type = lib.types.monoFontOption;
+          default = "UbuntuMono";
           description = "Global Catppuccin terminal font";
         };
         size = lib.mkOption {
