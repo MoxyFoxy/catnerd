@@ -18,7 +18,7 @@ stdenv.mkDerivation rec {
     hash = "sha256-jkk021LLjCLpWOaInzO4Klg6UOR4Sh5IcKdUxIn7Dis=";
   };
 
-  sourceRoot = "themes";
+  sourceRoot = "${src.name}/themes";
 
   installPhase = ''
     cp ${flavour}.conf $out

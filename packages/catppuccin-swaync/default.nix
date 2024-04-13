@@ -16,6 +16,12 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-7SB3T94fe8bZtpi3z5VRFAplmcoP734ZitWv4vtylVQ=";
   };
 
+  dontUnpack = true;
+
+  installPhase = ''
+    cp $src $out
+  '';
+
   meta = with lib; {
     description = "Soothing pastel theme for SwayNC";
     homepage = "https://github.com/catppuccin/swaync";
