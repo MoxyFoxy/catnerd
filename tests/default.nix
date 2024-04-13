@@ -6,26 +6,6 @@ let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
 
   pkgs = import nixpkgs {};
-
-  catnerd = {
-    enable = true;
-
-    flavour = "macchiato";
-    accent = "blue";
-
-    cursor.size = 24;
-
-    fonts = {
-      main = {
-        family = "Ubuntu";
-        size = 14;
-      };
-      mono = {
-        family = "DroidSansM";
-        size = 10;
-      };
-    };
-  };
 in
 pkgs.nixosTest {
   name = "catnerd";
@@ -48,7 +28,7 @@ pkgs.nixosTest {
       (import "${home-manager}/nixos")
       (self.nixosModules.catnerd { inherit config lib pkgs; })
     ];
-    inherit catnerd;
+    catnerd.enable = true;
 
     programs.dconf.enable = true; # required for gtk
 
@@ -63,7 +43,7 @@ pkgs.nixosTest {
       imports = [
         (self.homeManagerModules.catnerd { inherit config lib pkgs;})
       ];
-      inherit catnerd;
+      catnerd.enable = true;
 
       # Test home-manager module here
       home.packages = with pkgs; [

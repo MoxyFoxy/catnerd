@@ -42,7 +42,7 @@
       mono = {
         family = lib.mkOption {
           type = lib.types.monoFontOption;
-          default = "UbuntuMono";
+          default = "DroidSansM";
           description = "Mono nerdfont family";
         };
         size = lib.mkOption {
