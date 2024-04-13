@@ -21,7 +21,15 @@ in
 {
   config.gtk = lib.mkIf config.catnerd.enable
   {
-    inherit theme;
+    theme = {
+      name = "Catppuccin-${lib.mkUpper flavour}-Compact-${lib.mkUpper accent}-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        variant = flavour;
+        accents = [ accent ];
+        size = "compact";
+        tweaks = [ "rimless" ];
+      };
+    };
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.catppuccin-papirus-folders.override {
@@ -30,14 +38,14 @@ in
       };
     };
     cursorTheme = {
-        name = "Catppuccin-${lib.mkUpper flavour}-${lib.mkUpper accent}-Cursors";
-        package = pkgs.catppuccin-cursors.macchiatoPink;
-        size = config.catnerd.cursor.size;
+      name = "Catppuccin-${lib.mkUpper flavour}-${lib.mkUpper accent}-Cursors";
+      package = pkgs.catppuccin-cursors.macchiatoPink;
+      size = config.catnerd.cursor.size;
     };
     font = {
-        name = "${config.catnerd.fonts.main.family} Nerd Font";
-        package = pkgs.nerdfonts;
-        size = config.catnerd.fonts.main.size;
+      name = "${config.catnerd.fonts.main.family} Nerd Font";
+      package = pkgs.nerdfonts;
+      size = config.catnerd.fonts.main.size;
     };
   };
 
