@@ -13,7 +13,7 @@ in
     theme = "${pkgs.catppuccin-grub.override { inherit flavour accent; }}";
     splashImage = pkgs.catppuccin-splash.override { inherit flavour accent; };
 
-    font = "${pkgs.nerdfonts}/share/fonts/opentype/NerdFonts/${config.catnerd.fonts.mono.family}NerdFont-Regular.otf";
+    font = "${pkgs.nerdfonts}/share/fonts/opentype/NerdFonts/${config.catnerd.fonts.mono.family}NerdFontMono-Regular.otf";
     fontSize = config.catnerd.fonts.mono.size;
   };
 }
