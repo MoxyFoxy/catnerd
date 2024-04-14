@@ -47,7 +47,6 @@ in
       package = pkgs.nerdfonts;
       size = config.catnerd.fonts.main.size;
     };
-    # gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
   };
 
   config.xdg.configFile = lib.mkIf config.catnerd.enable {
