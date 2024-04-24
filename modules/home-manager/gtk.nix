@@ -19,35 +19,35 @@ let
   };
 in
 {
-  # config.gtk = lib.mkIf config.catnerd.enable
-  # {
-  #   theme = {
-  #     name = "Catppuccin-${lib.mkUpper flavour}-Compact-${lib.mkUpper accent}-Dark";
-  #     package = pkgs.catppuccin-gtk.override {
-  #       variant = flavour;
-  #       accents = [ accent ];
-  #       size = "compact";
-  #       tweaks = [ "rimless" ];
-  #     };
-  #   };
-  #   iconTheme = {
-  #     name = "Papirus-Dark";
-  #     package = pkgs.catppuccin-papirus-folders.override {
-  #       flavor = flavour;
-  #       accent = accent;
-  #     };
-  #   };
-  #   cursorTheme = {
-  #     name = "Catppuccin-${lib.mkUpper flavour}-${lib.mkUpper accent}-Cursors";
-  #     package = pkgs.catppuccin-cursors.macchiatoPink;
-  #     size = config.catnerd.cursor.size;
-  #   };
-  #   font = {
-  #     name = "${config.catnerd.fonts.main.family} Nerd Font";
-  #     package = pkgs.nerdfonts;
-  #     size = config.catnerd.fonts.main.size;
-  #   };
-  # };
+  config.gtk = lib.mkIf config.catnerd.enable
+  {
+    theme = {
+      name = "Catppuccin-${lib.mkUpper flavour}-Compact-${lib.mkUpper accent}-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        variant = flavour;
+        accents = [ accent ];
+        size = "compact";
+        tweaks = [ "rimless" ];
+      };
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.catppuccin-papirus-folders.override {
+        flavor = flavour;
+        accent = accent;
+      };
+    };
+    cursorTheme = {
+      name = "Catppuccin-${lib.mkUpper flavour}-${lib.mkUpper accent}-Cursors";
+      package = pkgs.catppuccin-cursors.macchiatoPink;
+      size = config.catnerd.cursor.size;
+    };
+    font = {
+      name = "${config.catnerd.fonts.main.family} Nerd Font";
+      package = pkgs.nerdfonts;
+      size = config.catnerd.fonts.main.size;
+    };
+  };
 
   # config.xdg.configFile = lib.mkIf config.catnerd.enable {
   #   "gtk-4.0/assets".source = "${theme.package}/share/themes/${theme.name}/gtk-4.0/assets";
