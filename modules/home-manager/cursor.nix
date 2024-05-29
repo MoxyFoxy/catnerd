@@ -9,6 +9,7 @@ let
   accent = config.catnerd.accent;
 in
 {
+  # Causes creation of ~/.icons
   config.home.pointerCursor = lib.mkIf config.catnerd.enable
   {
     name = "Catppuccin-${lib.mkUpper flavour}-${lib.mkUpper accent}-Cursors";
