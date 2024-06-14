@@ -13,7 +13,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://github.com/catppuccin/swaync/releases/download/v${version}/${flavour}.css";
-    sha256 = "sha256-7SB3T94fe8bZtpi3z5VRFAplmcoP734ZitWv4vtylVQ=";
+    sha256 = "sha256-ddwfrJVc5kB9/tGyE7pepln5YgphChhrAojQ9Zcfv3I=";
   };
 
   dontUnpack = true;
